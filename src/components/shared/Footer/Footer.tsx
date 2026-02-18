@@ -387,7 +387,7 @@ export default function Footer() {
                 <li>
                   <Link
                     className="text-gray-400 hover:text-primary-400 transition-colors text-sm"
-                    href="/track-order"
+                    href="/allorders"
                   >
                     Track Order
                   </Link>
