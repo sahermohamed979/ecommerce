@@ -11,6 +11,8 @@ export async function setToken(
   const cookeStore = await cookies();
   cookeStore.set("token", token, {
     httpOnly: true,
+    secure: true,
+    sameSite: "strict",
     maxAge: rememberMe ? 60 * 60 * 24 * 30 : 60 * 60 * 24,
   });
 }

@@ -1,7 +1,5 @@
-import React from 'react'
+import BrandScreen from "@/src/featuers/brand/screens/brand.screen";
 
 export default function BrandsPage() {
-  return (
-    <div>BrandsPage</div>
-  )
+  return <BrandScreen />;
 }

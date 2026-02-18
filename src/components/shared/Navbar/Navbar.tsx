@@ -1,6 +1,7 @@
 "use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCartArrowDown,
   faGift,
   faInbox,
   faPhone,
@@ -13,12 +14,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useAuthStore } from "@/src/featuers/auth/store/auth.slice";
+import { useCart } from "@/src/featuers/cart/hooks/useCart";
+import { useWishlist } from "@/src/featuers/WishList/hooks/useWishlist";
+import UserDropdown from "./UserDropdown";
 
 export default function Navbar() {
   const { isAuthenticated, userInfo, logout } = useAuthStore();
+  const { numOfCartItems } = useCart();
+  const { count: wishlistCount } = useWishlist();
+
+  useEffect(() => {
+    // Both hooks handle their own fetching, no manual trigger needed here
+  }, [isAuthenticated]);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -26,13 +36,11 @@ export default function Navbar() {
       document.body.style.overflow = "unset";
     }
 
-    // Cleanup on unmount
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
-  // Handle escape key to close menu
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isMobileMenuOpen) {
@@ -178,7 +186,7 @@ export default function Navbar() {
                 </Link>
                 <Link
                   className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
-                  href="/products"
+                  href="/shop"
                 >
                   Shop
                 </Link>
@@ -270,6 +278,11 @@ export default function Navbar() {
                   title="Wishlist"
                   href="/wishlist"
                 >
+                  {wishlistCount > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 bg-red-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                      {wishlistCount}
+                    </span>
+                  )}
                   {/* Replace with your heart icon */}
                   <svg
                     className="text-xl text-gray-500 group-hover:text-primary-600 transition-colors"
@@ -288,6 +301,11 @@ export default function Navbar() {
                   title="Cart"
                   href="/cart"
                 >
+                  {numOfCartItems > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 bg-primary-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                      {numOfCartItems}
+                    </span>
+                  )}
                   {/* Replace with your cart icon */}
                   <svg
                     className="text-xl text-gray-500 group-hover:text-primary-600 transition-colors"
@@ -303,25 +321,7 @@ export default function Navbar() {
                 {/* Sign In */}
 
                 {isAuthenticated ? (
-                  <Link
-                    className="hidden lg:flex p-2.5 rounded-full hover:bg-gray-100 transition-colors group"
-                    href="/profile"
-                    title="Account"
-                  >
-                    <svg
-                      data-prefix="far"
-                      data-icon="id-card"
-                      className="svg-inline--fa fa-id-card text-xl text-gray-500 group-hover:text-primary-600 transition-colors"
-                      role="img"
-                      viewBox="0 0 576 512"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M48 416l0-256 480 0 0 256c0 8.8-7.2 16-16 16l-192 0c0-44.2-35.8-80-80-80l-64 0c-44.2 0-80 35.8-80 80l-32 0c-8.8 0-16-7.2-16-16zM64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM208 312a56 56 0 1 0 0-112 56 56 0 1 0 0 112zM376 208c-13.3 0-24 10.7-24 24s10.7 24 24 24l80 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-80 0zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24l80 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-80 0z"
-                      ></path>
-                    </svg>
-                  </Link>
+                  <UserDropdown />
                 ) : (
                   <Link
                     className="hidden lg:flex items-center gap-2 ml-2 px-5 py-2.5 rounded-full bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold transition-colors shadow-sm shadow-primary-600/20"
@@ -549,11 +549,19 @@ export default function Navbar() {
                 <FontAwesomeIcon icon={faUser} />
                 {"Profile"}
               </Link>
+              <Link
+                className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#101828] text-white font-semibold hover:bg-primary-700 transition-all duration-200 w-full hover:scale-[1.02] active:scale-95"
+                href="/allorders"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <FontAwesomeIcon icon={faCartArrowDown} />
+                {"All Orders"}
+              </Link>
               <button
                 className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border-2 border-red-600 text-red-600 font-semibold hover:bg-red-50 transition-all duration-200 w-full hover:scale-[1.02] active:scale-95"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  logout(); 
+                  logout();
                 }}
               >
                 <FontAwesomeIcon icon={faUserPlus} />

@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 FreshCart - Modern E-commerce Platform
 
-## Getting Started
+FreshCart is a feature-rich, high-performance e-commerce application built with **Next.js 15+**, **React 19**, and **TanStack Query**. It provides a seamless shopping experience with real-time data synchronization, robust state management, and a premium UI/UX.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **🔐 Secure Authentication**:
+  - Login & Registration with JWT.
+  - Multi-step **Forget Password** flow (Email -> Code Verification -> New Password).
+  - Client-side auth state with **Zustand**.
+- **🛍️ Product Discovery**:
+  - Dynamic product listings and detailed views.
+  - Categorized browsing and brand filtering.
+- **🛒 Shopping Cart & Wishlist**:
+  - Real-time cart updates and persistence.
+  - Seamless wishlist management.
+  - Powered by **TanStack Query** for zero-latency UI feel.
+- **📦 Checkout Flow**:
+  - Streamlined checkout process with order summary.
+- **📱 Premium Responsive Design**:
+  - Fully responsive UI built with **Tailwind CSS v4**.
+  - Glassmorphism effects and smooth micro-animations.
+- **🛡️ Route Protection**:
+  - Global middleware for secure route management.
+  - Automatic redirects for unauthenticated users.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+- **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
+- **Core**: [React 19](https://react.dev/)
+- **Data Fetching**: [TanStack Query v5](https://tanstack.com/query/latest)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **State Management**: [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)
+- **Forms**: [React Hook Form](https://react-hook-form.com/)
+- **Notifications**: [React Toastify](https://fkhadra.github.io/react-toastify/introduction)
+- **Icons**: [FontAwesome](https://fontawesome.com/)
+- **HTTP Client**: [Axios](https://axios-http.com/)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
 
-## Deploy on Vercel
+- Node.js 18+
+- npm / yarn / pnpm
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/sahermohamed979/ecommerce.git
+   cd ecommerce
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+---
+
+## 📂 Project Structure
+
+- `src/app/`: Next.js App Router folders and layouts.
+- `src/featuers/`: Feature-sliced architecture (Cart, Wishlist, Auth, Products, etc.).
+- `src/components/`: Shared UI components (Navbar, Footer, etc.).
+- `src/hooks/`: Custom React hooks for shared logic.
+- `src/providers/`: Context providers (QueryClient, Auth).
+- `src/utils/`: Helper functions and shared utilities.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Developed with ❤️ by [Saher Mohamed](https://github.com/sahermohamed979)

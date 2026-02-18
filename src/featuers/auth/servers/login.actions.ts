@@ -33,6 +33,7 @@ export default async function loginAction(values: LoginFormValues) {
     console.log(data);
     if (data.message === "success") {
       await setToken(data.token, rememberMe ?? false);
+      console.log(data);
       return { success: true, message: "Logged in successfully", data };
     } else {
       return { success: false, message: data.message || "Login failed" };
