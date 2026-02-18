@@ -12,6 +12,7 @@ import {
   faPhone,
   faReceipt,
   faShieldHalved,
+  faSpinner,
   faTruck,
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
@@ -42,7 +43,7 @@ export default function CheckoutScreen() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       details: "",
@@ -71,7 +72,7 @@ export default function CheckoutScreen() {
 
           setTimeout(() => {
             router.push("/allorders");
-          }, 2000);
+          }, 500);
         }
       } else {
         const response = await createOnlineOrder(cartId, data, location.origin);
@@ -82,7 +83,7 @@ export default function CheckoutScreen() {
 
           setTimeout(() => {
             location.href = response.session.url;
-          }, 2000);
+          }, 500);
         }
       }
     } catch (error) {
@@ -513,10 +514,26 @@ export default function CheckoutScreen() {
                     </div>
                     <button
                       type="submit"
+                      disabled={isSubmitting}
                       className="w-full mt-6 bg-linear-to-r from-primary-600 to-primary-700 text-white py-4 rounded-xl font-bold hover:from-primary-700 hover:to-primary-800 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-primary-600/20 active:scale-[0.98]"
                     >
-                      <FontAwesomeIcon icon={faBox} className="text-xl" />
-                      Place Order
+                      {" "}
+                      {isSubmitting ? (
+                        <>
+                          {" "}
+                          <FontAwesomeIcon
+                            icon={faSpinner}
+                            spin
+                            className="text-xl"
+                          />
+                          Placing Order...
+                        </>
+                      ) : (
+                        <>
+                          <FontAwesomeIcon icon={faBox} className="text-xl" />
+                          Placing Order{" "}
+                        </>
+                      )}
                     </button>
                     <div className="flex items-center justify-center gap-4 mt-4 py-3 border-t border-gray-100">
                       <div className="flex items-center gap-1.5 text-xs text-gray-500">
