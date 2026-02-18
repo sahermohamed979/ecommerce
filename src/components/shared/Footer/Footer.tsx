@@ -309,7 +309,7 @@ export default function Footer() {
                 <li>
                   <Link
                     className="text-gray-400 hover:text-primary-400 transition-colors text-sm"
-                    href="/profile/orders"
+                    href="/allorders"
                   >
                     Order History
                   </Link>
@@ -401,7 +401,7 @@ export default function Footer() {
                 <li>
                   <Link
                     className="text-gray-400 hover:text-primary-400 transition-colors text-sm"
-                    href="/privacy"
+                    href="/privacy-policy"
                   >
                     Privacy Policy
                   </Link>
