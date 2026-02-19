@@ -1,6 +1,24 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { schemaEmail, schemaPassword } from "../schema/schemaPassword";
 
 export async function forgetPasswordRequest(data: { email: string }) {
+  const validationResult = schemaEmail.safeParse(data);
+  if (!validationResult.success) {
+    const errors: Record<string, string> = {};
+
+    if (validationResult.error) {
+      validationResult.error.issues.forEach((issue) => {
+        const field = issue.path[0] as string;
+        const message = issue.message;
+
+        if (!errors[field]) {
+          errors[field] = message;
+        }
+      });
+      return { success: false, errors, message: "Validation failed" };
+    }
+  }
+
   try {
     const option: AxiosRequestConfig = {
       method: "POST",
@@ -36,6 +54,24 @@ export async function resetPasswordRequest(data: {
   email: string;
   newPassword: string;
 }) {
+
+
+ const validationResult = schemaPassword.safeParse(data);
+  if (!validationResult.success) {
+    const errors: Record<string, string> = {};
+
+    if (validationResult.error) {
+      validationResult.error.issues.forEach((issue) => {
+        const field = issue.path[0] as string;
+        const message = issue.message;
+
+        if (!errors[field]) {
+          errors[field] = message;
+        }
+      });
+      return { success: false, errors, message: "Validation failed" };
+    }
+  }
   try {
     const option: AxiosRequestConfig = {
       method: "PUT",

@@ -20,6 +20,13 @@ import {
   faCheck,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  schemaEmail,
+  schemaEmailValues,
+  schemaPassword,
+  schemaPasswordValues,
+} from "../schema/schemaPassword";
 
 export default function ForgetPasswordScreen() {
   const [step, setStep] = useState(1);
@@ -34,6 +41,7 @@ export default function ForgetPasswordScreen() {
   } = useForm({
     defaultValues: { email: "" },
     mode: "onChange",
+    resolver: zodResolver(schemaEmail),
   });
 
   const { register: registerCode, handleSubmit: handleSubmitCode } = useForm({
@@ -48,9 +56,10 @@ export default function ForgetPasswordScreen() {
   } = useForm({
     defaultValues: { newPassword: "" },
     mode: "onChange",
+    resolver: zodResolver(schemaPassword),
   });
 
-  const onEmailSubmit = async (data: { email: string }) => {
+  const onEmailSubmit = async (data: schemaEmailValues) => {
     setIsLoading(true);
     try {
       const response = await forgetPasswordRequest(data);
@@ -83,7 +92,7 @@ export default function ForgetPasswordScreen() {
     }
   };
 
-  const onPasswordReset = async (data: { newPassword: string }) => {
+  const onPasswordReset = async (data: schemaPasswordValues) => {
     setIsLoading(true);
     try {
       const response = await resetPasswordRequest({
