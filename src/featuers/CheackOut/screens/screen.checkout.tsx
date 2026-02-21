@@ -63,7 +63,6 @@ export default function CheckoutScreen() {
       }
       if (paymentMethod === "cash") {
         const response = await createCashOrder(cartId, data);
-        console.log(response);
 
         if (response.status === "success") {
           toast.success("Order placed successfully");
@@ -76,7 +75,6 @@ export default function CheckoutScreen() {
         }
       } else {
         const response = await createOnlineOrder(cartId, data, location.origin);
-        console.log(response);
 
         if (response.status === "success") {
           toast.loading("Redirecting to payment...", { autoClose: 2000 });
