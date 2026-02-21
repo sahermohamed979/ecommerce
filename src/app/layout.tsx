@@ -6,6 +6,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import { ToastContainer, Bounce } from "react-toastify";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./../styles/globals.css";
 import logo from "../assets/images/mini-logo.png";
 import AuthProvider from "@/src/featuers/auth/providers/AuthProvider";
@@ -55,8 +56,9 @@ export default function RootLayout({
             />
           </AuthProvider>
         </ReactQueryProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
-      <Analytics />
     </html>
   );
 }
