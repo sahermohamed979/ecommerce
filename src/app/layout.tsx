@@ -10,6 +10,7 @@ import "./../styles/globals.css";
 import logo from "../assets/images/mini-logo.png";
 import AuthProvider from "@/src/featuers/auth/providers/AuthProvider";
 import ReactQueryProvider from "../providers/ReactQueryProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 config.autoAddCss = false;
 import { Exo } from "next/font/google";
@@ -56,6 +57,7 @@ export default function RootLayout({
           </AuthProvider>
         </ReactQueryProvider>
       </body>
+      <SpeedInsights />
       <Analytics />
     </html>
   );
