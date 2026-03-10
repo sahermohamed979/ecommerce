@@ -10,7 +10,6 @@ import BuyNo from "./ui/BuyNo";
 import AddWishlist from "./ui/addWishlist";
 import RemoveFromWish from "./ui/removeFromWish";
 import { useWishlist } from "../../WishList/hooks/useWishlist";
-import { useAuthStore } from "../../auth/store/auth.slice";
 export default function ProductInfo({
   product,
 }: {
@@ -18,7 +17,6 @@ export default function ProductInfo({
 }) {
   const [pice, setPice] = useState(1);
   const { items } = useWishlist();
-  const { isAuthenticated } = useAuthStore();
 
   const {
     subcategory,
