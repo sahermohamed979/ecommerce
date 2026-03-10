@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-200: #bbf7d0;
+  --color-primary-300: #86efac;
+  --color-primary-400: #4ade80;
+  --color-primary-500: #22c55e;
+  --color-primary-600: #16a34a;
+  --color-primary-700: #15803d;
+  --color-primary-800: #14532d;
+  --color-primary-900: #134e28;
+  --color-primary-950: #052f21;
+  --color-primary-1000: #fb2c36;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-700 font-sans;
+  }
+
+  span,
+  a {
+    @apply inline-block;
+  }
+
+  button,
+  a {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg bg-gray-200 text-gray-900 font-semibold hover:bg-gray-300 transition-colors duration-200;
+  }
+
+  .form-control {
+    @apply px-3 py-2 rounded-md border border-gray-400/40 focus:outline-none focus:border-primary-600;
+  }
+
+  /* Swiper Pagination Styles */
+  .swiper-pagination {
+    bottom: 20px !important;
+  }
+
+  .swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    opacity: 1 !important;
+    margin: 0 4px !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: white !important;
+  }
+
+  /* Mobile Menu Animations */
+  .animate-slide-down {
+    animation: slideDown 0.4s ease-out forwards;
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  @keyframes slideDown {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out forwards;
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  /* Slide In Up Animation for Slider Content */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@utility container {
+  @apply mx-auto px-4 sm:px-6 lg:px-8;
+}
