@@ -76,7 +76,7 @@ export async function getCartlog(): Promise<CartResponse | undefined> {
     const { data } = await axios(option);
     return data;
   } catch (error) {
-    console.error("Error fetching cart log:", error);
+    console.error("Error fetching cart log", error);
   }
 }
 
