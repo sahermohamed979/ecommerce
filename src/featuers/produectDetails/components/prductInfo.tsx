@@ -212,7 +212,7 @@ export default function ProductInfo({
                     </span>
                   </div>
                 </div>
-                {isAuthenticated ? (
+              
                   <>
                     {" "}
                     <div className="flex flex-col sm:flex-row gap-3 mb-6">
@@ -244,13 +244,7 @@ export default function ProductInfo({
                       </button>
                     </div>
                   </>
-                ) : (
-                  <Link className="block w-full mb-6" href="/login">
-                    <button className="w-full border-2 border-primary-100 text-white bg-primary-600 py-3.5 px-6 rounded-xl font-medium ">
-                      Login to add to cart
-                    </button>
-                  </Link>
-                )}
+               
                 <div className="border-t border-gray-100 pt-6">
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="flex items-center gap-3">
