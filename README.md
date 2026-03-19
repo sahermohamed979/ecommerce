@@ -55,10 +55,5 @@ FreshCart is a feature-rich, high-performance e-commerce application built with 
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
 
 Developed with ❤️ by [Saher Mohamed](https://github.com/sahermohamed979)
